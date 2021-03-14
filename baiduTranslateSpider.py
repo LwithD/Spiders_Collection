@@ -1,6 +1,7 @@
 import requests
 import json
 import execjs
+import re
 
 # baseurl = r"https://fanyi.baidu.com/sug"
 # baseurl = "https://fanyi.baidu.com/basetrans"
@@ -13,7 +14,7 @@ headers = {
 
 ctx = 0
 
-def get_translation():
+def get_Json():
     query = input("请输入需要翻译的词:\n")
     sign = ctx.call('e',query)
     # print(sign)
@@ -31,9 +32,11 @@ def get_translation():
     }
     response = requests.post(url = baseurl,headers = headers,data=param)
     Json = response.json()
-    print(Json)
-    # with open('./translation.html','w',encoding="utf-8") as f:
-    #     f.write(page_text)
+    return json.loads(Json)
+    # print(Json)
+    # js = response.text
+    # with open('./json.js','w',encoding="utf-8") as f:
+    #     f.write(js)
 
 def get_sign():
     f = open("./baiduTranslateSignJson.js",'r')
@@ -42,10 +45,14 @@ def get_sign():
     ctx = execjs.compile(signJson)
     f.close()
     
+def get_translation(Json):
+    j = re.findall('"result"(.+)"src"',Json)
+    print(j[0])
 
 def main():
     get_sign()
-    get_translation()
+    Json = get_Json()
+    get_translation(Json)
 
     # print(ctx)
 
