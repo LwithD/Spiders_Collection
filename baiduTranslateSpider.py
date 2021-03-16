@@ -32,8 +32,9 @@ def get_Json():
     }
     response = requests.post(url = baseurl,headers = headers,data=param)
     Json = response.json()
-    return json.loads(Json)
-    # print(Json)
+    # print(json.detect_encoding())
+    return json.dumps(Json,ensure_ascii=False)
+    # return Json
     # js = response.text
     # with open('./json.js','w',encoding="utf-8") as f:
     #     f.write(js)
@@ -46,7 +47,8 @@ def get_sign():
     f.close()
     
 def get_translation(Json):
-    j = re.findall('"result"(.+)"src"',Json)
+    j = re.findall(r'"dst": "(.+?)", "prefixWrap"',Json)
+    # print(Json)
     print(j[0])
 
 def main():
