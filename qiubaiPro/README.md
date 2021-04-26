@@ -1,0 +1,13 @@
+### 基于终端指令：
+
+scrapy crawl xxx -o filePath<br>
+
+只可以为：'json','jsonline','jl','csv','xml'<br>
+
+### 基于管道：
+-数据解析<br>
+-item类中定义相关属性<br>
+-解析的数据封装到item类型的对象中<br>
+-将item类中的对象提交到管道进行持久化存储的操作<br>
+-在管道类的process_item中将接受的item对象中的数据进行持久化存储<br>
+-在配置文件中开启管道
