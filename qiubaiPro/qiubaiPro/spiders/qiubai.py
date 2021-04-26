@@ -6,6 +6,8 @@ class QiubaiSpider(scrapy.Spider):
     # allowed_domains = ['www.xxx.com']
     start_urls = ['https://www.qiushibaike.com/text/']
 
+    url = 'https://www.qiushibaike.com/text/page/'
+    page_num = 2
 
     #终端指令存储
     # def parse(self, response):
@@ -42,5 +44,11 @@ class QiubaiSpider(scrapy.Spider):
             #item.Field()方法基本上继承了字典，所以用字典的访问方式
             item['author'] = author
             item['content'] = content
-
             yield item
+            
+            if self.page_num <=11:
+                new_url = self.url+str(self.page_num)
+                self.page_num += 1
+                #手动请求发送：callback回调函数是专门用于作数据解析
+                yield scrapy.Request(url = new_url,callback=self.parse)
+                
