@@ -34,6 +34,8 @@ class QiubaiSpider(scrapy.Spider):
         for div in div_list:
             #extract()方法提取selector对象的数据
             author = div.xpath('./div[1]/a[2]/h2/text()').extract_first()
+            if author == None:
+                author = "匿名用户"
             content = div.xpath('./a[1]/div/span[1]//text()').extract()
             content = ''.join(content)
             item = QiubaiproItem()
