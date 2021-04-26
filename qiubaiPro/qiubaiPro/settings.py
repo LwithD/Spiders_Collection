@@ -68,6 +68,7 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
     #300表示优先级，数值越小优先级越高
    'qiubaiPro.pipelines.QiubaiproPipeline': 300,
+   'qiubaiPro.pipelines.mysqlPileLine': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
