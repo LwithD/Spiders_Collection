@@ -4,7 +4,7 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+from fake_useragent import UserAgent
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
@@ -78,6 +78,9 @@ class BossproDownloaderMiddleware:
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
+
+        #UA伪装
+        request.headers['User-Agent'] = str(UserAgent().random)
         return None
 
     def process_response(self, request, response, spider):
@@ -89,6 +92,7 @@ class BossproDownloaderMiddleware:
         # - or raise IgnoreRequest
         return response
 
+    #拦截发生异常的请求
     def process_exception(self, request, exception, spider):
         # Called when a download handler or a process_request()
         # (from other downloader middleware) raises an exception.
@@ -97,7 +101,13 @@ class BossproDownloaderMiddleware:
         # - return None: continue processing this exception
         # - return a Response object: stops process_exception() chain
         # - return a Request object: stops process_exception() chain
-        pass
+
+        #代理IP
+        if request.url.split(':')[0]=='http':
+            request.meta['proxy'] = 'http://'+''
+        else:
+            request.meta['proxy'] = 'https://'+ ''
+        return request
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
