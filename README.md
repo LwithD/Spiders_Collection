@@ -4,9 +4,10 @@
 <br>  
 
 ## 笔记  
-asyncio不支持request库，可使用aiohttp  
-baiduTranslateSignJson.js 这个文件是生成sign的json函数文件  
-<br>
+asyncio不支持request库，可使用aiohttp.<br>  
+baiduTranslateSignJson.js 这个文件是生成sign的json函数文件.<br><br>
+chromedriver在浏览器版本88.0之后设置enable-automation反检测的手段失效，首页中有新解决方案.
+
 <br>
 <br>
 
