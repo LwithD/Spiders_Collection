@@ -9,5 +9,14 @@ from itemadapter import ItemAdapter
 
 
 class No11SunproPipeline:
+    fp = None
+    def open_spider(self, spider):
+        self.fp = open('sun.txt','w')
     def process_item(self, item, spider):
+        if item.__class__.__name__ =='No11SunproItem':
+            self.fp.write(item['title']+'\n')
+        else:
+            self.fp.write(item['new_id']+item['content']+'\n')
         return item
+    def close_spider(self, spider):
+        self.fp.close()
