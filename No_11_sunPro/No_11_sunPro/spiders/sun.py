@@ -65,3 +65,4 @@ class SunSpider(CrawlSpider):
         item = DetailItem()
         item['new_id']= new_id
         item['content'] = new_content
+        yield item
