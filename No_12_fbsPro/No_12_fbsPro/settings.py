@@ -1,4 +1,4 @@
-# Scrapy settings for fbsPro project
+# Scrapy settings for No_12_fbsPro project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'fbsPro'
+BOT_NAME = 'No_12_fbsPro'
 
-SPIDER_MODULES = ['fbsPro.spiders']
-NEWSPIDER_MODULE = 'fbsPro.spiders'
+SPIDER_MODULES = ['No_12_fbsPro.spiders']
+NEWSPIDER_MODULE = 'No_12_fbsPro.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'fbsPro (+http://www.yourdomain.com)'
+#USER_AGENT = 'No_12_fbsPro (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'fbsPro.middlewares.FbsproSpiderMiddleware': 543,
+#    'No_12_fbsPro.middlewares.No12FbsproSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'fbsPro.middlewares.FbsproDownloaderMiddleware': 543,
+#    'No_12_fbsPro.middlewares.No12FbsproDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'fbsPro.pipelines.FbsproPipeline': 300,
+#    'No_12_fbsPro.pipelines.No12FbsproPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

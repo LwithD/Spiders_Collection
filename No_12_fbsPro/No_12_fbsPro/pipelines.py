@@ -8,6 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class FbsproPipeline:
+class No12FbsproPipeline:
     def process_item(self, item, spider):
         return item
