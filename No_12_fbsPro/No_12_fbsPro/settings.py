@@ -14,10 +14,10 @@ NEWSPIDER_MODULE = 'No_12_fbsPro.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'No_12_fbsPro (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.51'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -86,3 +86,21 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+#指定管道
+ITEM_PIPELINES = {
+    'scrapy_redis.pipelines.RedisPipeline' : 400
+}
+
+#指定调度器
+#增加了一个去重容器类的配置，使用Redis的set集合来存储请求的指纹数据，从而实现请求去重的持久化
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+#使用scrapy-redis组建自己的调度器
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+#配置调度器是否持久化（即爬虫结束后是否清空请求队列和set缓存
+SCHEDULER_PERSIST = True
+
+#指定redis
+REDIS_HOST = '127.0.0.1' #远程IP
+REDIS_PORT = 6379
