@@ -2,8 +2,9 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy_redis.spiders import RedisCrawlSpider
+from No_12_fbsPro.items import No12FbsproItem
 
-class FbsSpider(CrawlSpider):
+class FbsSpider(RedisCrawlSpider):
     name = 'fbs'
     # allowed_domains = ['www.xxx.com']
     # start_urls = ['http://www.xxx.com/']
@@ -14,8 +15,12 @@ class FbsSpider(CrawlSpider):
     )
 
     def parse_item(self, response):
-        item = {}
-        #item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()
-        #item['name'] = response.xpath('//div[@id="name"]').get()
-        #item['description'] = response.xpath('//div[@id="description"]').get()
-        return item
+        li_list = response.xpath('//ul[@class="title-state-ul"]/li')
+        for li in li_list:
+            new_num = li.xpath('./span[1]/text()').extract_first()
+            new_title = li.xpath('./span[3]//text()').extract_first()
+            item = No12FbsproItem()
+            item['title'] = new_title
+            item['new_num'] = new_num
+
+            yield  item
